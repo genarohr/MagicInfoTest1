@@ -31,9 +31,9 @@ namespace MagicInfoTest1
 
         }
 
-        public string[] getSettings()
+        public void getSettings()
         {
-            return [null];
+           
         }
 
         public static byte[] Protect(string password)
