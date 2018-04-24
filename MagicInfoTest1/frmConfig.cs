@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 using System.Configuration;
 
+using MagicInfoTest1.Properties;
+
 /*
  Connect settings
  
@@ -21,6 +23,14 @@ namespace MagicInfoTest1
 {
     public partial class frmConfig : Form
     {
+
+        private void populateTexts()
+        {
+            txtPass.Text = Settings.Default.password;
+            txtUsername.Text = Settings.Default.username;
+            txtServer.Text = Settings.Default.server;
+        }
+
         public frmConfig()
         {
             InitializeComponent();
@@ -50,7 +60,30 @@ namespace MagicInfoTest1
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            settings config = new settings();
+            config.setSettings(txtServer.Text, txtUsername.Text, txtPass.Text);
+        }
 
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            OpenAPI client = new OpenAPI();
+
+            string token, cyphered;
+
+            token = client.getTokenID(txtUsername.Text, txtPass.Text, txtServer.Text);
+
+            txtTest.Text += token;
+
+
+        }
+
+        private void frmConfig_Load(object sender, EventArgs e)
+        {
+            populateTexts();
+            if (txtServer.Text == "")
+            {
+                txtServer.Text = "e.g. https://ip:7001/MagicInfo";
+            }
         }
     }
 }

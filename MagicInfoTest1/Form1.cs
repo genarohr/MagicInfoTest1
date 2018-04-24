@@ -6,10 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
+
+
 using System.IO;
 using System.Data.OleDb;
 using System.Windows.Forms;
+
+using MagicInfoTest1.Properties;
 
 namespace MagicInfoTest1
 {
@@ -18,14 +21,32 @@ namespace MagicInfoTest1
         private string Excel03ConString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
         private string Excel07ConString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
 
+        private void checkConfig()
+        {
+            if (Settings.Default.server == "" | Settings.Default.username == "" | Settings.Default.password == "")
+            {
+                Form frmConfig = new frmConfig();
+                frmConfig.Show();
+            }
+        }
+        private void setRowNumber(DataGridView dgv)
+        {
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                row.HeaderCell.Value = (row.Index + 1).ToString();
+            }
+        }
+
         public Form1()
         {
             InitializeComponent();
+            checkConfig();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            this.dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            setRowNumber(this.dataGridView1);
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -113,6 +134,21 @@ namespace MagicInfoTest1
                     }
                 }
             }
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            setRowNumber(this.dataGridView1);
         }
     }
 }

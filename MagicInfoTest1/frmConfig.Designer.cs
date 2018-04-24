@@ -121,6 +121,7 @@
             this.btnTest.TabIndex = 9;
             this.btnTest.Text = "Test";
             this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
             // txtTest
             // 
@@ -163,6 +164,7 @@
             this.Name = "frmConfig";
             this.Text = "Options";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.frmConfig_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.Configuration;
 
+using MagicInfoTest1.Properties;
 
 /*
  Based on https://msdn.microsoft.com/en-us/library/ms995355.aspx
@@ -28,12 +29,19 @@ namespace MagicInfoTest1
 
         public void setSettings(string strServer, string strUser, string strPass)
         {
-
+            Settings.Default.username = strUser;
+            Settings.Default.password = strPass;
+            Settings.Default.server = strServer;
         }
 
-        public void getSettings()
+
+        public string cypher(string text)
         {
-           
+            string cyphered;
+
+            cyphered = Protect(text).ToString();
+                
+            return cyphered;
         }
 
         public static byte[] Protect(string password)
