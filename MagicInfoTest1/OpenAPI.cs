@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 using RestSharp;
 using RestSharp.Authenticators;
+using Newtonsoft.Json;
 
 namespace MagicInfoTest1
 {
@@ -26,13 +28,25 @@ namespace MagicInfoTest1
              );
 
             IRestResponse response = client.Execute(request);
-            var token = response.Content; // raw content as string
+            var res = response.Content; // raw content as string
 
-            return token;
+            try
+            {
+                dynamic auth = JsonConvert.DeserializeObject(res);
+
+                string authToken = auth.token;
+                return authToken;
+            }
+            catch
+            {
+                MessageBox.Show("Peease check your Username and Password", "Auth Token not retrivied", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return null;
+
+            }
         }
     }
 
-    
+
 
     internal class MIUser
     {

@@ -59,5 +59,15 @@ namespace MagicInfoTest1.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ContentThumbnail {
+            get {
+                object obj = ResourceManager.GetObject("ContentThumbnail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

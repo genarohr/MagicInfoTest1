@@ -29,9 +29,16 @@ namespace MagicInfoTest1
 
         public void setSettings(string strServer, string strUser, string strPass)
         {
+            //Cypher password
+            byte[] encodedBinary = Protect(strPass);
+
+            string encoded = System.Text.Encoding.UTF8.GetString(encodedBinary, 0, encodedBinary.Length);
+
             Settings.Default.username = strUser;
             Settings.Default.password = strPass;
             Settings.Default.server = strServer;
+
+            Settings.Default.Save();
         }
 
 

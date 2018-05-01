@@ -21,6 +21,14 @@ namespace MagicInfoTest1
         private string Excel03ConString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
         private string Excel07ConString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
 
+
+        private void selectImg()
+        {
+            Form frmSelectIMG = new frmlSelectImg();
+
+            frmSelectIMG.Show();
+        }
+
         private void checkConfig()
         {
             if (Settings.Default.server == "" | Settings.Default.username == "" | Settings.Default.password == "")
@@ -136,6 +144,9 @@ namespace MagicInfoTest1
             }
         }
 
+
+
+
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -143,7 +154,10 @@ namespace MagicInfoTest1
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "colPromocion")
+            {
+                selectImg();
+            }
         }
 
         private void dataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)

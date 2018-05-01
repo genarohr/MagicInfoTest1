@@ -39,12 +39,14 @@
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.colTienda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPromocion = new System.Windows.Forms.DataGridViewImageColumn();
             this.colInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colForever = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colHoras = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSend = new System.Windows.Forms.DataGridViewButtonColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +59,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(673, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(838, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -138,13 +140,22 @@
             this.colInicio,
             this.colFinal,
             this.colForever,
-            this.colHoras});
+            this.colHoras,
+            this.colSend});
             this.dataGridView1.Location = new System.Drawing.Point(12, 27);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(649, 566);
+            this.dataGridView1.Size = new System.Drawing.Size(814, 566);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 583);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(838, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
             // 
             // colTienda
             // 
@@ -182,11 +193,18 @@
             this.colHoras.HeaderText = "Horas";
             this.colHoras.Name = "colHoras";
             // 
+            // colSend
+            // 
+            this.colSend.HeaderText = "Enviar";
+            this.colSend.Name = "colSend";
+            this.colSend.Text = "Enviar";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(673, 605);
+            this.ClientSize = new System.Drawing.Size(838, 605);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -219,6 +237,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinal;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colForever;
         private System.Windows.Forms.DataGridViewTextBoxColumn colHoras;
+        private System.Windows.Forms.DataGridViewButtonColumn colSend;
+        private System.Windows.Forms.StatusStrip statusStrip1;
     }
 }
 
