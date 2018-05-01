@@ -44,7 +44,31 @@ namespace MagicInfoTest1
 
             }
         }
+
+        public string getStatus(string user, string pass, string baseURL)
+        {
+
+            string token = getTokenID(user, pass, baseURL);
+
+
+
+            try
+            {
+                dynamic me = JsonConvert.DeserializeObject(res);
+
+                string status = me.status;
+                return status;
+            }
+            catch
+            {
+                MessageBox.Show("Peease check your Username and Password", "Token not retrivied", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return null;
+
+            }
+
+        }
     }
+
 
 
 
