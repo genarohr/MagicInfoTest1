@@ -68,11 +68,13 @@ namespace MagicInfoTest1
         {
             OpenAPI client = new OpenAPI();
 
-            string token, cyphered;
+            string token, status;
 
             token = client.getTokenID(txtUsername.Text, txtPass.Text, txtServer.Text);
 
             txtTest.Text += token;
+
+            //client.Dispose();
 
 
         }

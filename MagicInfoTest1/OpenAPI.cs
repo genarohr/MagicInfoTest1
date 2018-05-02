@@ -20,6 +20,8 @@ namespace MagicInfoTest1
 
             request.RequestFormat = DataFormat.Json;
 
+ 
+
             request.AddBody(new MIUser
                                 {
                                     username = user,
@@ -45,18 +47,25 @@ namespace MagicInfoTest1
             }
         }
 
-        public string getStatus(string user, string pass, string baseURL)
+        public string getStatus(string baseURL, string auth)
         {
 
-            string token = getTokenID(user, pass, baseURL);
+            var client = new RestClient(baseURL);
+            var request = new RestRequest("restapi/v1.0/ums/users/me", Method.GET);
 
+            request.RequestFormat = DataFormat.Json;
 
+            request.AddHeader("api_key", auth);
+
+            IRestResponse response = client.Execute(request);
+            var res = response.Content; // raw content as string
 
             try
             {
                 dynamic me = JsonConvert.DeserializeObject(res);
 
                 string status = me.status;
+
                 return status;
             }
             catch
@@ -68,8 +77,6 @@ namespace MagicInfoTest1
 
         }
     }
-
-
 
 
     internal class MIUser

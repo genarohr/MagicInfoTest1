@@ -27,6 +27,7 @@ namespace MagicInfoTest1
             Form frmSelectIMG = new frmlSelectImg();
 
             frmSelectIMG.Show();
+
         }
 
         private void checkConfig()
@@ -49,6 +50,7 @@ namespace MagicInfoTest1
         {
             InitializeComponent();
             checkConfig();
+            this.statusStrip1.Text = Settings.Default.server;
         }
 
         private void Form1_Load(object sender, EventArgs e)
