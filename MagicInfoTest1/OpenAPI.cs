@@ -76,7 +76,62 @@ namespace MagicInfoTest1
             }
 
         }
+
+        public string getContentSize(string baseURL, string auth)
+        {
+            var client = new RestClient(baseURL);
+            var request = new RestRequest("restapi/v1.0/cms/contents/dashboard", Method.GET);
+
+            request.RequestFormat = DataFormat.Json;
+
+            request.AddHeader("api_key", auth);
+
+            IRestResponse response = client.Execute(request);
+            var res = response.Content; // raw content as string
+
+            try
+            {
+                dynamic contentDashboard = JsonConvert.DeserializeObject(res);
+
+                string size = contentDashboard.totalCount;
+
+                return size;
+            }
+            catch
+            {
+                MessageBox.Show("Peease check your Username and Password", "Token not retrivied", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return null;
+
+            }
+        }
+
+        public List<contentItem> getContentItems(string baseURL, string auth,string size)
+        {
+            var client = new RestClient(baseURL);
+            var request = new RestRequest("restapi/v1.0/cms/contents", Method.GET);
+            request.RequestFormat = DataFormat.Json;
+
+            request.AddParameter("startIndex", "1", ParameterType.QueryString);
+            request.AddParameter("pageSize", "100", ParameterType.QueryString);
+
+            request.AddHeader("api_key", auth);
+
+            IRestResponse response = client.Execute(request);
+            var res = response.Content; // raw content as string
+            try
+            {
+                dynamic contents = JsonConvert.DeserializeObject(res);
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
+        
     }
+
+
 
 
     internal class MIUser
