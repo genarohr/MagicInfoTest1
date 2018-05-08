@@ -33,7 +33,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.colThumb = new System.Windows.Forms.DataGridViewImageColumn();
-            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAdded = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,13 +44,14 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colThumb,
-            this.colType,
+            this.colName,
             this.colSize,
             this.colUser,
             this.colAdded,
@@ -97,11 +98,11 @@
             this.colThumb.ReadOnly = true;
             this.colThumb.Width = 105;
             // 
-            // colType
+            // colName
             // 
-            this.colType.HeaderText = "Tipo";
-            this.colType.Name = "colType";
-            this.colType.ReadOnly = true;
+            this.colName.HeaderText = "Nombre";
+            this.colName.Name = "colName";
+            this.colName.ReadOnly = true;
             // 
             // colSize
             // 
@@ -151,7 +152,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.DataGridViewImageColumn colThumb;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSize;
         private System.Windows.Forms.DataGridViewTextBoxColumn colUser;
         private System.Windows.Forms.DataGridViewTextBoxColumn colAdded;

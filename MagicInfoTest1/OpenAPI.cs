@@ -8,6 +8,9 @@ using System.Windows.Forms;
 using RestSharp;
 using RestSharp.Authenticators;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.IO;
+using System.Net;
 
 namespace MagicInfoTest1
 {
@@ -105,7 +108,7 @@ namespace MagicInfoTest1
             }
         }
 
-        public List<contentItem> getContentItems(string baseURL, string auth,string size)
+        public IList<contentItem> getContentItems(string baseURL, string auth)
         {
             var client = new RestClient(baseURL);
             var request = new RestRequest("restapi/v1.0/cms/contents", Method.GET);
@@ -118,14 +121,47 @@ namespace MagicInfoTest1
 
             IRestResponse response = client.Execute(request);
             var res = response.Content; // raw content as string
+
+            IList<contentItem> contentList = new List<contentItem>();
+
+
             try
             {
-                dynamic contents = JsonConvert.DeserializeObject(res);
+                //dynamic contents = JsonConvert.DeserializeObject(res);
+
+                JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(res);
+                List<contentItem> items = jsonResponse["items"].ToObject<List<contentItem>>();
+
+                foreach (var item in items)
+                {
+                    contentList.Add(item);
+                }
+
+                return contentList;
             }
             catch
             {
                 return null;
             }
+
+        }
+
+        public string downloadImages(string baseURL, contentItem item)
+        {
+            string  path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OpenAPI");
+
+            string downloadURL = baseURL + item.thumbFilePath;
+            string filename = item.contentId + ".png";
+            if(!File.Exists(Path.Combine(path, filename)))
+            {
+                using (WebClient client = new WebClient())
+                {
+                    client.DownloadFile(new Uri(downloadURL), @Path.Combine(path, filename));
+                }
+            }
+
+
+            return Path.Combine(path, filename);
 
         }
         
