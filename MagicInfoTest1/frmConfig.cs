@@ -68,19 +68,13 @@ namespace MagicInfoTest1
         {
             OpenAPI client = new OpenAPI();
 
-            string token;
-            int count = 0;
-            IList<contentItem> contentList = new List<contentItem>();
-
+            string token, status;
 
             token = client.getTokenID(txtUsername.Text, txtPass.Text, txtServer.Text);
 
-            contentList = client.getContentItems(txtServer.Text, token);
-
             txtTest.Text += token;
 
-            txtTest.Text += "\n";
-
+            //client.Dispose();
 
 
         }

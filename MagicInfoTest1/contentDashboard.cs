@@ -11,10 +11,10 @@ namespace MagicInfoTest1
         public string apiVersion { get; set; }
         public string status { get; set; }
         public contentDashboardItems items { get; set; }
-        public string errorMessage { get; set; }
+        public object errorMessage { get; set; }
         public int pageSize { get; set; }
         public int totalCount { get; set; }
-        public string errorCode { get; set; }
+        public object errorCode { get; set; }
         public int startIndex { get; set; }
     }
     public class contentDashboardItems
