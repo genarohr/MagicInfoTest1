@@ -42,8 +42,8 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.colTienda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPromocion = new System.Windows.Forms.DataGridViewImageColumn();
-            this.colInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colInicio = new MagicInfoTest1.CalendarColumn();
+            this.colFinal = new MagicInfoTest1.CalendarColumn();
             this.colForever = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colHoras = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSend = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -175,11 +175,14 @@
             this.colInicio.HeaderText = "Inicio";
             this.colInicio.Name = "colInicio";
             this.colInicio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colInicio.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // colFinal
             // 
             this.colFinal.HeaderText = "Fin";
             this.colFinal.Name = "colFinal";
+            this.colFinal.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colFinal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // colForever
             // 
@@ -231,14 +234,14 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTienda;
         private System.Windows.Forms.DataGridViewImageColumn colPromocion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colInicio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colFinal;
+        private CalendarColumn colInicio;
+        private CalendarColumn colFinal;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colForever;
         private System.Windows.Forms.DataGridViewTextBoxColumn colHoras;
         private System.Windows.Forms.DataGridViewButtonColumn colSend;
-        private System.Windows.Forms.StatusStrip statusStrip1;
     }
 }
 

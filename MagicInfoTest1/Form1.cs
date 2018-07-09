@@ -6,8 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-
 using System.IO;
 using System.Data.OleDb;
 using System.Windows.Forms;
@@ -20,7 +18,20 @@ namespace MagicInfoTest1
     {
         private string Excel03ConString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
         private string Excel07ConString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
+        public static string selectedPromo;
 
+        private string path = "";
+
+
+        private void checkPath()
+        {
+            path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OpenAPI");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+        }
 
         private void selectImg()
         {
@@ -35,7 +46,7 @@ namespace MagicInfoTest1
             if (Settings.Default.server == "" | Settings.Default.username == "" | Settings.Default.password == "")
             {
                 Form frmConfig = new frmConfig();
-                frmConfig.Show();
+                frmConfig.ShowDialog();
             }
         }
         private void setRowNumber(DataGridView dgv)
@@ -50,7 +61,7 @@ namespace MagicInfoTest1
         {
             InitializeComponent();
             checkConfig();
-            this.statusStrip1.Text = Settings.Default.server;
+            checkPath();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -156,9 +167,32 @@ namespace MagicInfoTest1
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            string tmpPromo = selectedPromo;
             if (dataGridView1.Columns[e.ColumnIndex].Name == "colPromocion")
             {
-                selectImg();
+                //selectImg();
+
+                Form frmSelectIMG = new frmlSelectImg();
+
+                frmSelectIMG.ShowDialog();
+
+                try
+                {
+                    //this.dataGridView1.Rows.Add();
+                    this.dataGridView1.Rows[e.RowIndex].Height = 109;
+                    Image img;
+                    string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OpenAPI");
+                    string imgPath = Path.Combine(path, selectedPromo + ".png");
+                    img = Image.FromFile(imgPath);
+                    this.dataGridView1.Rows[e.RowIndex].Cells[1].Value = img;
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+
+
+                
             }
         }
 
