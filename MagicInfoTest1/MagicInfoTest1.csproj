@@ -96,6 +96,7 @@
     </Compile>
     <Compile Include="settings.cs" />
     <Compile Include="token.cs" />
+    <Compile Include="xlsRead.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
