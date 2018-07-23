@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 
 namespace MagicInfoTest1
 {
-    public class contents
+
+    public class contentDetail
     {
         public string apiVersion { get; set; }
         public string status { get; set; }
-        public List<contentItem> items { get; set; }
+        public contentItems items { get; set; }
         public object errorMessage { get; set; }
+        public object errorCode { get; set; }
         public int pageSize { get; set; }
         public int totalCount { get; set; }
-        public object errorCode { get; set; }
         public int startIndex { get; set; }
     }
 
-    public class contentItem
+    public class contentItems
     {
         public string contentId { get; set; }
         public int versionId { get; set; }
@@ -57,7 +58,7 @@ namespace MagicInfoTest1
         public int vwlVersion { get; set; }
         public bool multiVwl { get; set; }
         public string deviceType { get; set; }
-        public int deviceTypeVersion { get; set; }
+        public float deviceTypeVersion { get; set; }
         public int pollingInterval { get; set; }
         public string playTimeMilli { get; set; }
         public string isUsedTemplate { get; set; }
@@ -66,6 +67,4 @@ namespace MagicInfoTest1
         public string approvalOpinion { get; set; }
         public string streamingUrl { get; set; }
     }
-
 }
-

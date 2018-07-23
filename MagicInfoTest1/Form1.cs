@@ -18,6 +18,7 @@ namespace MagicInfoTest1
     {
 
         public static string selectedPromo;
+        public static string selectedDdays;
 
         private string path = "";
 
@@ -38,6 +39,11 @@ namespace MagicInfoTest1
 
             frmSelectIMG.Show();
 
+        }
+        private void selectDdays()
+        {
+            Form frmSelectDays = new frmSelectDays();
+            frmSelectDays.Show();
         }
 
         private void checkConfig()
@@ -116,9 +122,6 @@ namespace MagicInfoTest1
 
         }
 
-
-
-
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -126,38 +129,73 @@ namespace MagicInfoTest1
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string tmpPromo = selectedPromo;
-            if (dataGridView1.Columns[e.ColumnIndex].Name == "colPromocion")
+
+            if (dataGridView1.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
-                //selectImg();
-
-                Form frmSelectIMG = new frmlSelectImg();
-
-                frmSelectIMG.ShowDialog();
-
+                
                 try
                 {
-                    //this.dataGridView1.Rows.Add();
-                    this.dataGridView1.Rows[e.RowIndex].Height = 109;
-                    Image img;
-                    string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OpenAPI");
-                    string imgPath = Path.Combine(path, selectedPromo + ".png");
-                    img = Image.FromFile(imgPath);
-                    this.dataGridView1.Rows[e.RowIndex].Cells[1].Value = img;
+                    string schedule = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    string content = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    string init = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    string end = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    string days = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+
+                    publishSchedule publish = new publishSchedule();
+                    publish.publish(schedule, content, init, end, days);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
-
-
-                
             }
         }
 
         private void dataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             setRowNumber(this.dataGridView1);
+        }
+
+        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            int column = dataGridView1.CurrentCell.ColumnIndex;
+            string colName = dataGridView1.Columns[column].Name;
+            if (colName == "colPromocion")
+            {
+                TextBox tb = e.Control as TextBox;
+                Form frmSelectIMG = new frmlSelectImg();
+                frmSelectIMG.ShowDialog();
+                try
+                {
+                    tb.Text = selectedPromo;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+
+            if (colName == "colDias")
+            {
+                TextBox tb = e.Control as TextBox;
+                Form frmSelectDias = new frmSelectDays();
+                frmSelectDias.ShowDialog();
+                try
+                {
+                    tb.Text = selectedDdays;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+
+
+        }
+
+        private void dataGridView1_EditModeChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }
