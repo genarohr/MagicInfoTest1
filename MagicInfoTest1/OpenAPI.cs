@@ -11,11 +11,14 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Net;
+using RestSharp.Deserializers;
 
 namespace MagicInfoTest1
 {
     class OpenAPI
     {
+
+
         public string getTokenID(string user, string pass, string baseURL)
         {
             if (!baseURL.StartsWith("http://", StringComparison.OrdinalIgnoreCase)) baseURL = "http://" + baseURL;
@@ -145,6 +148,105 @@ namespace MagicInfoTest1
             {
                 return null;
             }
+
+        }
+        public void deploySchedule(string baseURL, string auth, string deviceGroupIds, string scheduleID)
+        {
+            var client = new RestClient(baseURL);
+            var request = new RestRequest("restapi/v1.0/dms/schedule/contents/" + scheduleID + "/deploy", Method.PUT);
+            request.RequestFormat = DataFormat.Json;
+
+            
+
+            deploySchedule dpsch = new deploySchedule();
+            List<object> list = new List<object>();
+
+            dpsch.backgroundMusic = "";
+            dpsch.contentMute = "";
+            dpsch.contentSyncOn = "0";
+            dpsch.deployReserve = false;
+            dpsch.deployReserveResource = null;
+            dpsch.deviceGroupIds = deviceGroupIds;
+            dpsch.deviceGroupIds = "SPLAYER";
+            dpsch.deviceTypeVersion = "2";
+            dpsch.itemList = list;
+            dpsch.scheduleGroupId = 14;
+            dpsch.scheduleName = "[NEW Schedule] "+ DateTime.Now.ToString("yyyy-MM-dd HH':'mm':'ss");
+            dpsch.vwlType = "";
+
+            var json = JsonConvert.SerializeObject(dpsch);
+
+            request.AddParameter("application/json", json, ParameterType.RequestBody);
+            request.AddHeader("api_key", auth);
+            client.Execute(request);
+
+        }
+
+        public void putSchedule(string baseURL, string auth, programSchedule schedule, string scheduleID)
+        {
+            var client = new RestClient(baseURL);
+            var request = new RestRequest("restapi/v1.0/dms/schedule/contents/" + scheduleID, Method.PUT);
+            request.RequestFormat = DataFormat.Json;
+
+            var json = JsonConvert.SerializeObject(schedule);
+
+            request.AddParameter("application/json", json, ParameterType.RequestBody);
+            request.AddHeader("api_key", auth);
+            client.Execute(request);
+
+        }
+
+        public contentDetail GetContentDetails(string baseURL, string auth, string contentID)
+        {
+            var client = new RestClient(baseURL);
+            var request = new RestRequest("restapi/v1.0/cms/contents/" + contentID, Method.GET);
+            request.RequestFormat = DataFormat.Json;
+            request.AddHeader("api_key", auth);
+            IRestResponse response = client.Execute(request);
+
+
+            try
+            {
+                contentDetail content = new contentDetail();
+                RestSharp.Deserializers.JsonDeserializer desserial = new JsonDeserializer();
+                content = desserial.Deserialize<contentDetail>(response);
+                return content;
+            }
+            catch
+            {
+                return null;
+            }
+
+
+        }
+
+
+
+        public schedules GetScheduleDetails(string baseURL, string auth, string schedule)
+        {
+            var client = new RestClient(baseURL);
+            var request = new RestRequest("restapi/v1.0/dms/schedule/contents/"+schedule, Method.GET);
+            request.RequestFormat = DataFormat.Json;
+            //request.AddUrlSegment("id", schedule);
+            request.AddHeader("api_key", auth);
+
+            IRestResponse response = client.Execute(request);
+            //var res = response.Content; // raw content as string
+            
+
+            try
+            {
+                schedules schdl = new schedules();
+                //dynamic contents = JsonConvert.DeserializeObject(res);
+                RestSharp.Deserializers.JsonDeserializer desserial = new JsonDeserializer();
+                schdl = desserial.Deserialize<schedules>(response);
+                return schdl;
+            }
+            catch
+            {
+                return null;
+            }
+
 
         }
 

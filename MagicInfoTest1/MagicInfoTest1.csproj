@@ -64,8 +64,13 @@
     <Compile Include="CalendarEditingControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="checkDates.cs" />
+    <Compile Include="checkSchedule.cs" />
+    <Compile Include="cheeckContent.cs" />
     <Compile Include="contentDashboard.cs" />
+    <Compile Include="contentDetail.cs" />
     <Compile Include="contents.cs" />
+    <Compile Include="deploySchedule.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +92,7 @@
     <Compile Include="me.cs" />
     <Compile Include="OpenAPI.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="programSchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="frmlSelectImg.cs">
       <SubType>Form</SubType>
@@ -94,6 +100,15 @@
     <Compile Include="frmlSelectImg.Designer.cs">
       <DependentUpon>frmlSelectImg.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSelectDays.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectDays.Designer.cs">
+      <DependentUpon>frmSelectDays.cs</DependentUpon>
+    </Compile>
+    <Compile Include="publishSchedule.cs" />
+    <Compile Include="scheduleList.cs" />
+    <Compile Include="schedules.cs" />
     <Compile Include="settings.cs" />
     <Compile Include="token.cs" />
     <Compile Include="xlsRead.cs" />
@@ -119,6 +134,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="frmSelectDays.resx">
+      <DependentUpon>frmSelectDays.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

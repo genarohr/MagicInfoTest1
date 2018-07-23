@@ -39,14 +39,13 @@
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.colTienda = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPromocion = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colPromocion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colInicio = new MagicInfoTest1.CalendarColumn();
             this.colFinal = new MagicInfoTest1.CalendarColumn();
-            this.colForever = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colHoras = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSend = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -59,7 +58,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(838, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(908, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -139,23 +138,16 @@
             this.colPromocion,
             this.colInicio,
             this.colFinal,
-            this.colForever,
-            this.colHoras,
+            this.colDias,
             this.colSend});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 27);
+            this.dataGridView1.Location = new System.Drawing.Point(24, 27);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(814, 566);
+            this.dataGridView1.Size = new System.Drawing.Size(884, 566);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.EditModeChanged += new System.EventHandler(this.dataGridView1_EditModeChanged);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView1_EditingControlShowing);
             this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 583);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(838, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // colTienda
             // 
@@ -167,7 +159,6 @@
             this.colPromocion.HeaderText = "Promocion";
             this.colPromocion.Name = "colPromocion";
             this.colPromocion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colPromocion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colPromocion.ToolTipText = "Haga click para seleccionar su imagen";
             // 
             // colInicio
@@ -184,17 +175,11 @@
             this.colFinal.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.colFinal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // colForever
+            // colDias
             // 
-            this.colForever.HeaderText = "Por siempre";
-            this.colForever.Name = "colForever";
-            this.colForever.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colForever.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // colHoras
-            // 
-            this.colHoras.HeaderText = "Horas";
-            this.colHoras.Name = "colHoras";
+            this.colDias.HeaderText = "Dìas";
+            this.colDias.Name = "colDias";
+            this.colDias.ToolTipText = "E.g. mon,tue,wed,thu,fri";
             // 
             // colSend
             // 
@@ -202,11 +187,19 @@
             this.colSend.Name = "colSend";
             this.colSend.Text = "Enviar";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 583);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(908, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(838, 605);
+            this.ClientSize = new System.Drawing.Size(908, 605);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
@@ -236,11 +229,10 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTienda;
-        private System.Windows.Forms.DataGridViewImageColumn colPromocion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPromocion;
         private CalendarColumn colInicio;
         private CalendarColumn colFinal;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn colForever;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colHoras;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDias;
         private System.Windows.Forms.DataGridViewButtonColumn colSend;
     }
 }
