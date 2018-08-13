@@ -113,6 +113,42 @@ namespace MagicInfoTest1
             }
         }
 
+        public IList<playlistItem> getPlaylistItems(string baseURL, string auth, playlistFilter filter)
+        {
+            var client = new RestClient(baseURL);
+            var request = new RestRequest("restapi/v1.0/cms/playlists/filter", Method.POST);
+            request.RequestFormat = DataFormat.Json;
+            
+            request.AddHeader("api_key", auth);
+
+            var json = JsonConvert.SerializeObject(filter);
+
+            request.AddParameter("application/json", json, ParameterType.RequestBody);
+
+            IRestResponse response = client.Execute(request);
+            var res = response.Content; // raw content as string
+
+            IList<playlistItem> playlistList = new List<playlistItem>();
+
+
+            try
+            {
+                JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(res);
+                List<playlistItem> items = jsonResponse["items"].ToObject<List<playlistItem>>();
+
+                foreach (var item in items)
+                {
+                    playlistList.Add(item);
+                }
+
+                return playlistList;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public IList<contentItem> getContentItems(string baseURL, string auth)
         {
             var client = new RestClient(baseURL);
@@ -167,10 +203,10 @@ namespace MagicInfoTest1
             dpsch.deployReserve = false;
             dpsch.deployReserveResource = null;
             dpsch.deviceGroupIds = deviceGroupIds;
-            dpsch.deviceGroupIds = "SPLAYER";
+            dpsch.deviceType = "SPLAYER";
             dpsch.deviceTypeVersion = "2";
             dpsch.itemList = list;
-            dpsch.scheduleGroupId = 14;
+            dpsch.scheduleGroupId = 2;
             dpsch.scheduleName = "[NEW Schedule] "+ DateTime.Now.ToString("yyyy-MM-dd HH':'mm':'ss");
             dpsch.vwlType = "";
 
@@ -219,6 +255,29 @@ namespace MagicInfoTest1
 
 
         }
+        public playlistDetails GetPlaylistDetails(string baseURL, string auth, string contentID)
+        {
+            var client = new RestClient(baseURL);
+            var request = new RestRequest("restapi/v1.0/cms/playlists/" + contentID, Method.GET);
+            request.RequestFormat = DataFormat.Json;
+            request.AddHeader("api_key", auth);
+            IRestResponse response = client.Execute(request);
+
+
+            try
+            {
+                playlistDetails playlist = new playlistDetails();
+                RestSharp.Deserializers.JsonDeserializer desserial = new JsonDeserializer();
+                playlist = desserial.Deserialize<playlistDetails>(response);
+                return playlist;
+            }
+            catch
+            {
+                return null;
+            }
+
+
+        }
 
 
 
@@ -250,12 +309,12 @@ namespace MagicInfoTest1
 
         }
 
-        public string downloadImages(string baseURL, contentItem item , string tokenKey, string user)
+        public string downloadImages(string baseURL, string Id, string thumbFilePath, string tokenKey, string user)
         {
             string  path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OpenAPI");
 
-            string downloadURL = baseURL + item.thumbFilePath + "&api_key=" + tokenKey + "&userId=" + user +"&width=105" + "&height=80";
-            string filename = item.contentId + ".png";
+            string downloadURL = baseURL + thumbFilePath + "&api_key=" + tokenKey + "&userId=" + user +"&width=105" + "&height=80";
+            string filename = Id + ".png";
             if(!File.Exists(Path.Combine(path, filename)))
             {
                 using (WebClient client = new WebClient())

@@ -65,6 +65,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="checkDates.cs" />
+    <Compile Include="checkPlaylists.cs" />
     <Compile Include="checkSchedule.cs" />
     <Compile Include="cheeckContent.cs" />
     <Compile Include="contentDashboard.cs" />
@@ -89,8 +90,17 @@
     <Compile Include="frmConfig.Designer.cs">
       <DependentUpon>frmConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSelectPlaylist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectPlaylist.Designer.cs">
+      <DependentUpon>frmSelectPlaylist.cs</DependentUpon>
+    </Compile>
     <Compile Include="me.cs" />
     <Compile Include="OpenAPI.cs" />
+    <Compile Include="playlistDetails.cs" />
+    <Compile Include="playlistFilter.cs" />
+    <Compile Include="playlists.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="programSchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,6 +116,7 @@
     <Compile Include="frmSelectDays.Designer.cs">
       <DependentUpon>frmSelectDays.cs</DependentUpon>
     </Compile>
+    <Compile Include="publishPlaylist.cs" />
     <Compile Include="publishSchedule.cs" />
     <Compile Include="scheduleList.cs" />
     <Compile Include="schedules.cs" />
@@ -123,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmlSelectImg.resx">
       <DependentUpon>frmlSelectImg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectPlaylist.resx">
+      <DependentUpon>frmSelectPlaylist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

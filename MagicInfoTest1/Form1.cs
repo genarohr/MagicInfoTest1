@@ -145,16 +145,21 @@ namespace MagicInfoTest1
 
             if (dataGridView1.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
-                
+                string schedule = "";
+                string content = "";
+                string init = "";
+                string end = "";
+                string days = "";
                 try
                 {
-                    string schedule = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    string content = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-                    string init = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    string end = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-                    string days = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+                    schedule += dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    content += dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    init += dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    end += dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    days += dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
 
-                    publishSchedule publish = new publishSchedule();
+                    //publishSchedule publish = new publishSchedule();
+                    publishPlaylist publish = new publishPlaylist();
                     publish.publish(schedule, content, init, end, days);
                 }
                 catch (Exception ex)
@@ -176,8 +181,12 @@ namespace MagicInfoTest1
             if (colName == "colPromocion")
             {
                 TextBox tb = e.Control as TextBox;
-                Form frmSelectIMG = new frmlSelectImg();
-                frmSelectIMG.ShowDialog();
+                //Form frmSelectIMG = new frmlSelectImg();
+                //frmSelectIMG.ShowDialog();
+
+                Form frmSelectPlaylist = new frmSelectPlaylist();
+                frmSelectPlaylist.ShowDialog();
+                
                 try
                 {
                     tb.Text = selectedPromo;
@@ -209,6 +218,13 @@ namespace MagicInfoTest1
         private void dataGridView1_EditModeChanged(object sender, EventArgs e)
         {
            
+        }
+
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            checkPlaylists playlists = new checkPlaylists();
+
+            playlists.check();
         }
     }
 }

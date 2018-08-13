@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MagicInfoTest1
 {
-    class publishSchedule
+    class publishPlaylist
     {
-        public void publish(string schedule, string content, string init, string finish, string days)
+          public void publish(string schedule, string content, string init, string finish, string days)
         {
             OpenAPI client = new OpenAPI();
             string token, username, password, server;
@@ -26,8 +26,8 @@ namespace MagicInfoTest1
             string deviceGroupIds; //this is the variable to be taken in order to publish to the same device group
             int programGroupId;
 
-            contentDetail currenetContent = new contentDetail();////retrive  information  from content
-            string contentName, mediaType;
+            playlistDetails currenetPlaylist = new playlistDetails();////retrive  information  from playlist
+            string contentName;
 
 
             username = Settings.Default.username;
@@ -37,24 +37,24 @@ namespace MagicInfoTest1
 
             inicio = Convert.ToDateTime(init);
             fin = Convert.ToDateTime(finish);
-
-            strInit = inicio.ToString("yyyy-M-d");
-            strEnd = fin.ToString("yyyy-M-d");
+            
+            strInit = inicio.ToString("yyyy-M-d"); 
+            strEnd  = fin.ToString("yyyy-M-d");
 
 
             token = client.getTokenID(username, password, server);
 
             currenetSchedule = client.GetScheduleDetails(server, token, schedule);
-            currenetContent = client.GetContentDetails(server, token, content);
+            currenetPlaylist = client.GetPlaylistDetails(server, token, content);
 
-            contentName = currenetContent.items.contentName;
-            mediaType = currenetContent.items.mediaType;
-            thumbnailPath = currenetContent.items.thumbFilePath;
+            contentName = currenetPlaylist.items.playlistName;
+            thumbnailPath = currenetPlaylist.items.contentList[0].thumbFilePath;
 
             frameID = currenetSchedule.items.data.channelList[0].frameList[0].frameId;
             deviceGroupIds = currenetSchedule.items.data.deviceGroupId;
 
             programGroupId = currenetSchedule.items.data.programGroupId;
+
             if (days == "")
             {
                 days = "mon,tue,wed,thu,fri,sat,sun";
@@ -66,7 +66,7 @@ namespace MagicInfoTest1
             itms.cifsSlideTime = "5";
             itms.contentId = content;
             itms.contentName = contentName;
-            itms.contentType = mediaType;
+            itms.contentType = "PLAYLIST";
             itms.duration = "86399";
             itms.frameId = frameID;
             itms.inputSource = "";
@@ -106,5 +106,6 @@ namespace MagicInfoTest1
 
 
         }
+    
     }
 }

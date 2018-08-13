@@ -46,6 +46,7 @@
             this.colDias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSend = new System.Windows.Forms.DataGridViewButtonColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -88,7 +89,8 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.magicInfoServerToolStripMenuItem});
+            this.magicInfoServerToolStripMenuItem,
+            this.testToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
@@ -96,7 +98,7 @@
             // magicInfoServerToolStripMenuItem
             // 
             this.magicInfoServerToolStripMenuItem.Name = "magicInfoServerToolStripMenuItem";
-            this.magicInfoServerToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.magicInfoServerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.magicInfoServerToolStripMenuItem.Text = "MagicInfo Server";
             this.magicInfoServerToolStripMenuItem.Click += new System.EventHandler(this.magicInfoSerrverToolStripMenuItem_Click);
             // 
@@ -195,6 +197,13 @@
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // testToolStripMenuItem
+            // 
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.testToolStripMenuItem.Text = "Test";
+            this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -234,6 +243,7 @@
         private CalendarColumn colFinal;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDias;
         private System.Windows.Forms.DataGridViewButtonColumn colSend;
+        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
     }
 }
 
